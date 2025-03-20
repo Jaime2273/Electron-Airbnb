@@ -1,0 +1,103 @@
+/* Estilo general para el cuerpo de la página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    overflow: hidden; /* Evitar desplazamiento no deseado */
+}
+
+/* Estilo para el encabezado */
+h1 {
+    color: #333;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del formulario (input y botón) */
+#formulario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* Estilo para el campo de búsqueda (input) */
+#localidad {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
+    min-width: 150px;
+}
+
+/* Estilo para el botón de búsqueda */
+#buscar {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Cambiar color al pasar el ratón por encima del botón */
+#buscar:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para la lista de resultados */
+#resultados {
+    list-style-type: none;
+    padding: 0;
+    margin-top: 30px;
+    width: 80%;
+    max-width: 600px;
+    overflow-y: auto; /* Permite el desplazamiento vertical */
+    max-height: 500px; /* Definimos una altura máxima para evitar que la lista se corte */
+}
+
+#resultados li {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilo para los elementos dentro de los resultados */
+#resultados li h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    color: #333;
+}
+
+#resultados li p {
+    color: #555;
+    font-size: 1rem;
+}
+
+#resultados li .valoracion {
+    font-weight: bold;
+    color: #f39c12; /* Color para destacar la valoración */
+}
+
+#resultados li a {
+    text-decoration: none;
+    color: #007BFF;
+    font-weight: bold;
+}
+
+#resultados li a:hover {
+    text-decoration: underline;
+}

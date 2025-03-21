@@ -17,15 +17,15 @@ app.whenReady().then(() => {
     mainWindow.loadFile("index.html");
 });
 
-ipcMain.on("buscar-alojamientos", async (event, { localidad, fechaEntrada, fechaSalida }) => {
-    console.log(`Buscando alojamientos en: ${localidad} del ${fechaEntrada} al ${fechaSalida}`); // DEBUG
+ipcMain.on("buscar-alojamientos", async (event, { localidad, fechaEntrada, fechaSalida, adultos, ninos, bebes }) => {
+    console.log(`Buscando alojamientos en: ${localidad} del ${fechaEntrada} al ${fechaSalida} para ${adultos} adultos, ${ninos} niños y ${bebes} bebés`); // DEBUG
 
     const browser = await puppeteer.launch({ headless: false, slowMo: 100 });
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 800 });
 
-    // Construir la URL de búsqueda en Airbnb
-    const url = `https://www.airbnb.com/s/${encodeURIComponent(localidad)}/homes?checkin=${fechaEntrada}&checkout=${fechaSalida}`;
+    // Construir la URL de búsqueda en Airbnb con los parámetros adicionales
+    const url = `https://www.airbnb.com/s/${encodeURIComponent(localidad)}/homes?checkin=${fechaEntrada}&checkout=${fechaSalida}&adults=${adultos}&children=${ninos}&infants=${bebes}`;
     await page.goto(url, { waitUntil: "networkidle2" });
 
     await page.waitForSelector("div[data-testid='card-container']");

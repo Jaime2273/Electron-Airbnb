@@ -2,11 +2,14 @@ const { ipcRenderer } = require("electron");
 
 document.getElementById("buscar").addEventListener("click", () => {
     const localidad = document.getElementById("localidad").value;
+    const fechaEntrada = document.getElementById("fecha-entrada").value;
+    const fechaSalida = document.getElementById("fecha-salida").value;
     
-    if (localidad) {
-        ipcRenderer.send("buscar-alojamientos", localidad);
+    if (localidad && fechaEntrada && fechaSalida) {
+        // Enviar localidad, fecha de entrada y fecha de salida al proceso principal
+        ipcRenderer.send("buscar-alojamientos", { localidad, fechaEntrada, fechaSalida });
     } else {
-        alert("Por favor, introduce una localidad.");
+        alert("Por favor, introduce todos los campos.");
     }
 });
 

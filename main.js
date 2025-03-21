@@ -17,14 +17,15 @@ app.whenReady().then(() => {
     mainWindow.loadFile("index.html");
 });
 
-ipcMain.on("buscar-alojamientos", async (event, localidad) => {
-    console.log(`Buscando alojamientos en: ${localidad}`); // DEBUG
+ipcMain.on("buscar-alojamientos", async (event, { localidad, fechaEntrada, fechaSalida }) => {
+    console.log(`Buscando alojamientos en: ${localidad} del ${fechaEntrada} al ${fechaSalida}`); // DEBUG
 
     const browser = await puppeteer.launch({ headless: false, slowMo: 100 });
     const page = await browser.newPage();
     await page.setViewport({ width: 1200, height: 800 });
 
-    const url = `https://www.airbnb.com/s/${encodeURIComponent(localidad)}/homes`;
+    // Construir la URL de búsqueda en Airbnb
+    const url = `https://www.airbnb.com/s/${encodeURIComponent(localidad)}/homes?checkin=${fechaEntrada}&checkout=${fechaSalida}`;
     await page.goto(url, { waitUntil: "networkidle2" });
 
     await page.waitForSelector("div[data-testid='card-container']");
@@ -39,8 +40,6 @@ ipcMain.on("buscar-alojamientos", async (event, localidad) => {
         });
     });
     
-
-    // console.log("Resultados extraídos:", alojamientos); // DEBUG
     event.reply("resultados-alojamientos", alojamientos);
 
     await browser.close();

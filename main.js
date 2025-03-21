@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain } = require("electron");
+const { app, BrowserWindow, ipcMain } = require("electron"); // Importar ipcMain
 const puppeteer = require("puppeteer");
 const path = require("path");
 
@@ -18,7 +18,7 @@ app.whenReady().then(() => {
 });
 
 ipcMain.on("buscar-alojamientos", async (event, { localidad, fechaEntrada, fechaSalida, adultos, ninos, bebes }) => {
-    console.log(`Buscando alojamientos en: ${localidad} del ${fechaEntrada} al ${fechaSalida} para ${adultos} adultos, ${ninos} niños y ${bebes} bebés`); // DEBUG
+    console.log(`Buscando alojamientos en: ${localidad} del ${fechaEntrada} al ${fechaSalida} para ${adultos} adultos, ${ninos} niños y ${bebes} bebés`);
 
     const browser = await puppeteer.launch({ headless: false, slowMo: 100 });
     const page = await browser.newPage();
@@ -36,7 +36,11 @@ ipcMain.on("buscar-alojamientos", async (event, { localidad, fechaEntrada, fecha
             const precio = item.querySelector("span._hb913q")?.innerText.trim() || "No disponible";
             const valoracion = item.querySelector(".r4a59j5")?.innerText.trim() || "No disponible";
             const enlace = item.querySelector("a") ? "https://www.airbnb.com" + item.querySelector("a").getAttribute("href") : "#";
-            return { titulo, precio, valoracion, enlace };
+            
+            // Extraer la URL de la imagen
+            const imagen = item.querySelector("img")?.src || "https://via.placeholder.com/150"; // Imagen por defecto si no se encuentra
+
+            return { titulo, precio, valoracion, enlace, imagen };
         });
     });
     

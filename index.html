@@ -6,15 +6,50 @@
     <link rel="stylesheet" href="style.css"> 
 </head>
 <body>
-    <h1>Buscar alojamientos en Airbnb</h1>
-    
-    <div id="formulario">
-        <input type="text" id="localidad" placeholder="Introduce una localidad">
-        <input type="date" id="fecha-entrada">
-        <input type="date" id="fecha-salida">
-        <button id="buscar">Buscar</button>
+    <div class="container">
+        <h1>Buscar alojamientos en Airbnb</h1>
+        
+        <div class="formulario">
+            <!-- Campo de localidad -->
+            <div class="form-group">
+                <label for="localidad">Localidad:</label>
+                <input type="text" id="localidad" placeholder="Ej: Madrid, Barcelona...">
+            </div>
+
+            <!-- Campos de fechas -->
+            <div class="form-group">
+                <label for="fecha-entrada">Fecha de entrada:</label>
+                <input type="date" id="fecha-entrada">
+            </div>
+
+            <div class="form-group">
+                <label for="fecha-salida">Fecha de salida:</label>
+                <input type="date" id="fecha-salida">
+            </div>
+
+            <!-- Campos de número de personas -->
+            <div class="form-group">
+                <label for="adultos">Adultos:</label>
+                <input type="number" id="adultos" placeholder="1" min="1" value="1">
+            </div>
+
+            <div class="form-group">
+                <label for="ninos">Niños:</label>
+                <input type="number" id="ninos" placeholder="0" min="0" value="0">
+            </div>
+
+            <div class="form-group">
+                <label for="bebes">Bebés:</label>
+                <input type="number" id="bebes" placeholder="0" min="0" value="0">
+            </div>
+
+            <!-- Botón de búsqueda -->
+            <button id="buscar">Buscar alojamientos</button>
+        </div>
+
+        <!-- Lista de resultados -->
+        <ul id="resultados"></ul>
     </div>
-    <ul id="resultados"></ul>
 
     <script src="renderer.js"></script>
 </body>

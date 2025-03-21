@@ -133,3 +133,21 @@ input[type="number"]:focus {
 #resultados li a:hover {
     text-decoration: underline;
 }
+/* Estilo para las imágenes en los resultados */
+#resultados li img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+/* Ajustar el tamaño de la lista de resultados */
+#resultados li {
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

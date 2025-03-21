@@ -23,6 +23,15 @@ ipcRenderer.on("resultados-alojamientos", (event, alojamientos) => {
     alojamientos.forEach(alojamiento => {
         const li = document.createElement("li");
         
+        // Imagen
+        const imagen = document.createElement("img");
+        imagen.src = alojamiento.imagen;
+        imagen.alt = alojamiento.titulo;
+        imagen.style.width = "100%";
+        imagen.style.borderRadius = "5px";
+        imagen.style.marginBottom = "10px";
+        li.appendChild(imagen);
+
         // Título
         const titulo = document.createElement("h2");
         titulo.textContent = alojamiento.titulo;

@@ -4,12 +4,15 @@ document.getElementById("buscar").addEventListener("click", () => {
     const localidad = document.getElementById("localidad").value;
     const fechaEntrada = document.getElementById("fecha-entrada").value;
     const fechaSalida = document.getElementById("fecha-salida").value;
+    const adultos = document.getElementById("adultos").value;
+    const ninos = document.getElementById("ninos").value;
+    const bebes = document.getElementById("bebes").value;
     
-    if (localidad && fechaEntrada && fechaSalida) {
-        // Enviar localidad, fecha de entrada y fecha de salida al proceso principal
-        ipcRenderer.send("buscar-alojamientos", { localidad, fechaEntrada, fechaSalida });
+    if (localidad && fechaEntrada && fechaSalida && adultos) {
+        // Enviar localidad, fecha de entrada, fecha de salida y número de personas al proceso principal
+        ipcRenderer.send("buscar-alojamientos", { localidad, fechaEntrada, fechaSalida, adultos, ninos, bebes });
     } else {
-        alert("Por favor, introduce todos los campos.");
+        alert("Por favor, introduce todos los campos obligatorios.");
     }
 });
 
